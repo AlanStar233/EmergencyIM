@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/m_start_server"
+        android:title="@string/m_start_server"
+        
+        android:icon="@drawable/start_server" />
+
+    <item
+        android:id="@+id/m_wifi_config"
+        android:title="@string/m_wifi_config"
+        android:icon="@drawable/wifi" />
+
+</menu>

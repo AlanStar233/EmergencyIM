@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">EmergencyIM</string>
+    <string name="bt_skip">跳过</string>
+    <string name="m_start_server">启动主机服务</string>
+    <string name="m_wifi_config">应急接入点设置</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="btn_single">消息</string>
+</resources>
