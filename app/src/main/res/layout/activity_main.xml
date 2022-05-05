@@ -9,45 +9,18 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent" >
 
-        <androidx.viewpager.widget.ViewPager
-            android:id="@+id/vp_fragments"
+        <!-- FrameLayout -->
+        <FrameLayout
+            android:id="@+id/fl_pager"
+            android:layout_above="@+id/bottom_nav_bar"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" >
+            android:layout_height="match_parent" />
 
-        </androidx.viewpager.widget.ViewPager>
-
-        <LinearLayout
-            android:id="@+id/navi"
+        <com.ashokvarma.bottomnavigation.BottomNavigationBar
+            android:id="@+id/bottom_nav_bar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:orientation="horizontal">
-
-            <ImageButton
-                android:id="@+id/btn_single"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:src="@drawable/single_info"
-                tools:ignore="ContentDescription" />
-
-            <ImageButton
-                android:id="@+id/btn_group"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:src="@drawable/group_info"
-                tools:ignore="ContentDescription" />
-
-            <ImageButton
-                android:id="@+id/btn_settings"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:src="@drawable/settings"
-                tools:ignore="ContentDescription" />
-
-        </LinearLayout>
+            android:layout_alignParentBottom="true" />
 
     </RelativeLayout>
 

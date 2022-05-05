@@ -7,21 +7,33 @@ import android.os.Bundle;
 import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.FrameLayout;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
+
+import com.ashokvarma.bottomnavigation.BottomNavigationBar;
+import com.ashokvarma.bottomnavigation.BottomNavigationItem;
 
 import java.lang.reflect.Method;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements BottomNavigationBar.OnTabSelectedListener {
 
-    //create
+    //组件声明
+    FrameLayout fl_pager;
+    BottomNavigationBar bottom_nav_bar;
 
     //Value
     private long exitTime = 0;      //退出事件时间
+    private Fragment SingleChat_Fragment;
+    private Fragment GroupChat_Fragment;
+    private Fragment Settings_Fragment;
 
-    // 两次返回监听事件
+    // TODO: 两次返回监听事件
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         if (keyCode == KeyEvent.KEYCODE_BACK && event.getAction() == KeyEvent.ACTION_DOWN) {        //当按下系统返回键 && 手指第一次触碰屏幕时
@@ -41,20 +53,43 @@ public class MainActivity extends AppCompatActivity {
         return super.onKeyDown(keyCode, event);
     }
 
-    // onCreate主事件
+    // TODO: onCreate主事件
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        //bind
+        // 组件注册
+        initAssembly();
 
         // 蓝牙是否支持
         Toast.makeText(getApplicationContext(), "蓝牙支持:" + isBlueToothSupport(), Toast.LENGTH_SHORT).show();
 
+        // 监听Navbar事件
+        bottom_nav_bar.setTabSelectedListener(this)
+                .setMode(BottomNavigationBar.MODE_DEFAULT)
+                .setBackgroundStyle(BottomNavigationBar.BACKGROUND_STYLE_DEFAULT)
+                .setActiveColor(R.color.Tianyi_Blue)    // 天依蓝 (｀・ω・´)
+                .setInActiveColor(R.color.Light_Gray)   // 浅灰
+                .setBarBackgroundColor(R.color.white)   // 纯白
+                // 创建 bar 内元素
+                .addItem(new BottomNavigationItem(R.drawable.single_info, "消息"))
+                .addItem(new BottomNavigationItem(R.drawable.group_info, "群组"))
+                .addItem(new BottomNavigationItem(R.drawable.settings, "设置"))
+                .setFirstSelectedPosition(0)        // 第0个
+                .initialise();
+
     }
 
-    // 蓝牙支持检测
+// TODO: function
+
+    // TODO: 组件注册
+    public void initAssembly() {
+        fl_pager = findViewById(R.id.fl_pager);
+        bottom_nav_bar = findViewById(R.id.bottom_nav_bar);
+    }
+
+    // TODO: 蓝牙支持检测
     public boolean isBlueToothSupport() {
         BluetoothAdapter bluetoothAdapter = BluetoothAdapter.getDefaultAdapter();   //实例化蓝牙
         if (bluetoothAdapter != null) {
@@ -63,7 +98,6 @@ public class MainActivity extends AppCompatActivity {
             return false;       //支持蓝牙
         }
     }
-
 
     // Menu注册
     //TODO: 添加 Menu
@@ -88,7 +122,7 @@ public class MainActivity extends AppCompatActivity {
         return super.onMenuOpened(featureId, menu);
     }
 
-    // TODO: Menu被选中后执行事件
+    // TODO: Menu被选中后执行事件   (待开发)
     @SuppressLint("NonConstantResourceId")
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
@@ -100,4 +134,69 @@ public class MainActivity extends AppCompatActivity {
         }
         return super.onOptionsItemSelected(item);
     }
+
+    // TODO: 监听Navbar事件
+    @Override
+    public void onTabSelected(int position) {       // Tab 选中触发事件
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        // 开启事务
+        FragmentTransaction transaction = fragmentManager.beginTransaction();
+
+        switch (position) {
+            case 0:
+                if (SingleChat_Fragment == null) {
+                    SingleChat_Fragment = new SingleChat_Fragment();
+                }
+                transaction.replace(R.id.fl_pager, SingleChat_Fragment);
+                break;
+            case 1:
+                if (GroupChat_Fragment == null) {
+                    GroupChat_Fragment = new GroupChat_Fragment();
+                }
+                transaction.replace(R.id.fl_pager, GroupChat_Fragment);
+                break;
+            case 2:
+                if (Settings_Fragment == null) {
+                    Settings_Fragment = new Settings_Fragment();
+                }
+                transaction.replace(R.id.fl_pager, Settings_Fragment);
+                break;
+        }
+        transaction.commit();       //事务提交
+    }
+
+    @Override
+    public void onTabUnselected(int position) {
+
+    }
+
+    @Override
+    public void onTabReselected(int position) {
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        // 开启事务
+        FragmentTransaction transaction = fragmentManager.beginTransaction();
+
+        switch (position) {
+            case 0:
+                if (SingleChat_Fragment == null) {
+                    SingleChat_Fragment = new SingleChat_Fragment();
+                }
+                transaction.replace(R.id.fl_pager, SingleChat_Fragment);
+                break;
+            case 1:
+                if (GroupChat_Fragment == null) {
+                    GroupChat_Fragment = new GroupChat_Fragment();
+                }
+                transaction.replace(R.id.fl_pager, GroupChat_Fragment);
+                break;
+            case 2:
+                if (Settings_Fragment == null) {
+                    Settings_Fragment = new Settings_Fragment();
+                }
+                transaction.replace(R.id.fl_pager, Settings_Fragment);
+                break;
+        }
+        transaction.commit();       //事务提交
+    }
+
 }
