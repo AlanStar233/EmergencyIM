@@ -3,6 +3,7 @@ package com.alanstar.emergencyim;
 import android.annotation.SuppressLint;
 import android.bluetooth.BluetoothAdapter;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.KeyEvent;
 import android.view.Menu;
@@ -11,27 +12,23 @@ import android.widget.FrameLayout;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
-import com.ashokvarma.bottomnavigation.BottomNavigationBar;
-import com.ashokvarma.bottomnavigation.BottomNavigationItem;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import java.lang.reflect.Method;
 
-public class MainActivity extends AppCompatActivity implements BottomNavigationBar.OnTabSelectedListener {
+public class MainActivity extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener {
 
     //组件声明
     FrameLayout fl_pager;
-    BottomNavigationBar bottom_nav_bar;
+    BottomNavigationView bottom_nav_bar;
 
     //Value
     private long exitTime = 0;      //退出事件时间
-    private Fragment SingleChat_Fragment;
-    private Fragment GroupChat_Fragment;
-    private Fragment Settings_Fragment;
 
     // TODO: 两次返回监听事件
     @Override
@@ -54,6 +51,7 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationB
     }
 
     // TODO: onCreate主事件
+    @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -62,22 +60,12 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationB
         // 组件注册
         initAssembly();
 
+        // Navigation
+        setDefaultFragment();
+        bottom_nav_bar.setOnNavigationItemSelectedListener(this);
+
         // 蓝牙是否支持
         Toast.makeText(getApplicationContext(), "蓝牙支持:" + isBlueToothSupport(), Toast.LENGTH_SHORT).show();
-
-        // 监听Navbar事件
-        bottom_nav_bar.setTabSelectedListener(this)
-                .setMode(BottomNavigationBar.MODE_DEFAULT)
-                .setBackgroundStyle(BottomNavigationBar.BACKGROUND_STYLE_DEFAULT)
-                .setActiveColor(R.color.Tianyi_Blue)    // 天依蓝 (｀・ω・´)
-                .setInActiveColor(R.color.Light_Gray)   // 浅灰
-                .setBarBackgroundColor(R.color.white)   // 纯白
-                // 创建 bar 内元素
-                .addItem(new BottomNavigationItem(R.drawable.single_info, "消息"))
-                .addItem(new BottomNavigationItem(R.drawable.group_info, "群组"))
-                .addItem(new BottomNavigationItem(R.drawable.settings, "设置"))
-                .setFirstSelectedPosition(0)        // 第0个
-                .initialise();
 
     }
 
@@ -135,68 +123,35 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationB
         return super.onOptionsItemSelected(item);
     }
 
-    // TODO: 监听Navbar事件
-    @Override
-    public void onTabSelected(int position) {       // Tab 选中触发事件
-        FragmentManager fragmentManager = getSupportFragmentManager();
-        // 开启事务
-        FragmentTransaction transaction = fragmentManager.beginTransaction();
-
-        switch (position) {
-            case 0:
-                if (SingleChat_Fragment == null) {
-                    SingleChat_Fragment = new SingleChat_Fragment();
-                }
-                transaction.replace(R.id.fl_pager, SingleChat_Fragment);
+    // TODO: NaviBar 选择响应事件
+    @SuppressLint("NonConstantResourceId")
+    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+        FragmentManager fm = getSupportFragmentManager();
+        FragmentTransaction transaction = fm.beginTransaction();
+        switch (item.getItemId()) {
+            case R.id.navi_SingleChat:
+                SingleChat_Fragment singleChat_fragment = new SingleChat_Fragment();
+                transaction.replace(R.id.fl_pager, singleChat_fragment);
                 break;
-            case 1:
-                if (GroupChat_Fragment == null) {
-                    GroupChat_Fragment = new GroupChat_Fragment();
-                }
-                transaction.replace(R.id.fl_pager, GroupChat_Fragment);
+            case R.id.navi_GroupChat:
+                GroupChat_Fragment groupChat_fragment = new GroupChat_Fragment();
+                transaction.replace(R.id.fl_pager, groupChat_fragment);
                 break;
-            case 2:
-                if (Settings_Fragment == null) {
-                    Settings_Fragment = new Settings_Fragment();
-                }
-                transaction.replace(R.id.fl_pager, Settings_Fragment);
+            case R.id.navi_Settings:
+                Settings_Fragment settings_fragment = new Settings_Fragment();
+                transaction.replace(R.id.fl_pager, settings_fragment);
                 break;
         }
-        transaction.commit();       //事务提交
+        transaction.commit();
+        return true;
     }
 
-    @Override
-    public void onTabUnselected(int position) {
-
+    //TODO: 默认Fragment
+    private void setDefaultFragment() {
+        FragmentManager fm = getSupportFragmentManager();
+        FragmentTransaction transaction = fm.beginTransaction();
+        SingleChat_Fragment singleChat_fragment = new SingleChat_Fragment();
+        transaction.replace(R.id.fl_pager, singleChat_fragment);
+        transaction.commit();
     }
-
-    @Override
-    public void onTabReselected(int position) {
-        FragmentManager fragmentManager = getSupportFragmentManager();
-        // 开启事务
-        FragmentTransaction transaction = fragmentManager.beginTransaction();
-
-        switch (position) {
-            case 0:
-                if (SingleChat_Fragment == null) {
-                    SingleChat_Fragment = new SingleChat_Fragment();
-                }
-                transaction.replace(R.id.fl_pager, SingleChat_Fragment);
-                break;
-            case 1:
-                if (GroupChat_Fragment == null) {
-                    GroupChat_Fragment = new GroupChat_Fragment();
-                }
-                transaction.replace(R.id.fl_pager, GroupChat_Fragment);
-                break;
-            case 2:
-                if (Settings_Fragment == null) {
-                    Settings_Fragment = new Settings_Fragment();
-                }
-                transaction.replace(R.id.fl_pager, Settings_Fragment);
-                break;
-        }
-        transaction.commit();       //事务提交
-    }
-
 }

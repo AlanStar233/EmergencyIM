@@ -50,5 +50,6 @@ public class Splash extends AppCompatActivity {
             finish();
             splashThread.stop();    //当跳过按钮按下后终止splashThread线程，防止二次呈现MainActivity(但有间歇性黑屏，取决于机器性能)
         });
+
     }
 }

@@ -3,6 +3,7 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/code/Android_Project/EmergencyIM/app/src/main/res/drawable/bottombar_select_style.xml" value="0.1235" />
         <entry key="..\:/code/Android_Project/EmergencyIM/app/src/main/res/drawable/group_info.xml" value="0.216" />
         <entry key="..\:/code/Android_Project/EmergencyIM/app/src/main/res/drawable/settings.xml" value="0.216" />
         <entry key="..\:/code/Android_Project/EmergencyIM/app/src/main/res/drawable/single_info.xml" value="0.216" />
@@ -14,6 +15,7 @@
         <entry key="..\:/code/Android_Project/EmergencyIM/app/src/main/res/layout/fragment_settings_.xml" value="0.24947916666666667" />
         <entry key="..\:/code/Android_Project/EmergencyIM/app/src/main/res/layout/fragment_single_chat_.xml" value="0.24947916666666667" />
         <entry key="..\:/code/Android_Project/EmergencyIM/app/src/main/res/menu/main_menu.xml" value="0.4" />
+        <entry key="..\:/code/Android_Project/EmergencyIM/app/src/main/res/menu/navigation.xml" value="0.24947916666666667" />
       </map>
     </option>
   </component>
