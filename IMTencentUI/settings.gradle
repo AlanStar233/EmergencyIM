@@ -1,0 +1,47 @@
+pluginManagement {
+    repositories {
+        gradlePluginPortal()
+        google()
+        mavenCentral()
+    }
+}
+dependencyResolutionManagement {
+    repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
+    repositories {
+        google()
+        mavenCentral()
+        maven { url "https://mirrors.tencent.com/nexus/repository/maven-public/" }
+    }
+}
+rootProject.name = "IMTencentUI"
+
+// 引入上层应用模块
+include ':app'
+
+// 引入内部组件通信模块 (必要模块)
+include ':tuicore'
+project(':tuicore').projectDir = new File(settingsDir, '../TUIKit/TUICore/tuicore')
+
+// 引入聊天功能模块 (基础功能模块)
+include ':tuichat'
+project(':tuichat').projectDir = new File(settingsDir, '../TUIKit/TUIChat/tuichat')
+
+// 引入关系链功能模块 (基础功能模块)
+include ':tuicontact'
+project(':tuicontact').projectDir = new File(settingsDir, '../TUIKit/TUIContact/tuicontact')
+
+// 引入会话功能模块 (基础功能模块)
+include ':tuiconversation'
+project(':tuiconversation').projectDir = new File(settingsDir, '../TUIKit/TUIConversation/tuiconversation')
+
+// 引入搜索功能模块（需要购买旗舰版套餐）
+//include ':tuisearch'
+//project(':tuisearch').projectDir = new File(settingsDir, '../TUIKit/TUISearch/tuisearch')
+
+// 引入群组功能模块
+include ':tuigroup'
+project(':tuigroup').projectDir = new File(settingsDir, '../TUIKit/TUIGroup/tuigroup')
+
+// 引入音视频通话功能模块
+include ':tuicalling'
+project(':tuicalling').projectDir = new File(settingsDir, '../TUIKit/TUICalling/tuicalling')

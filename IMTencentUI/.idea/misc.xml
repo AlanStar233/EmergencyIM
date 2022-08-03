@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DesignSurface">
+    <option name="filePathToZoomLevelMap">
+      <map>
+        <entry key="..\:/Users/AlanStar/Desktop/IMTencentUI_Project/IMTencentUI/app/src/main/res/drawable/core_list_divider.xml" value="0.112" />
+        <entry key="..\:/Users/AlanStar/Desktop/IMTencentUI_Project/IMTencentUI/app/src/main/res/layout/activity_about_imactivity.xml" value="0.17395833333333333" />
+        <entry key="..\:/Users/AlanStar/Desktop/IMTencentUI_Project/IMTencentUI/app/src/main/res/layout/activity_language_select.xml" value="0.18333333333333332" />
+        <entry key="..\:/Users/AlanStar/Desktop/IMTencentUI_Project/IMTencentUI/app/src/main/res/layout/activity_login_for_dev.xml" value="0.18333333333333332" />
+        <entry key="..\:/Users/AlanStar/Desktop/IMTencentUI_Project/IMTencentUI/app/src/main/res/layout/activity_main.xml" value="0.18333333333333332" />
+        <entry key="..\:/Users/AlanStar/Desktop/IMTencentUI_Project/IMTencentUI/app/src/main/res/layout/activity_self_detail.xml" value="0.17395833333333333" />
+        <entry key="..\:/Users/AlanStar/Desktop/IMTencentUI_Project/IMTencentUI/app/src/main/res/layout/activity_splash.xml" value="0.109375" />
+        <entry key="..\:/Users/AlanStar/Desktop/IMTencentUI_Project/IMTencentUI/app/src/main/res/layout/activity_theme_select.xml" value="0.18333333333333332" />
+        <entry key="..\:/Users/AlanStar/Desktop/IMTencentUI_Project/IMTencentUI/app/src/main/res/layout/core_select_item_layout.xml" value="0.18229166666666666" />
+        <entry key="..\:/Users/AlanStar/Desktop/IMTencentUI_Project/IMTencentUI/app/src/main/res/layout/fragment_profile.xml" value="0.17395833333333333" />
+        <entry key="..\:/Users/AlanStar/Desktop/IMTencentUI_Project/IMTencentUI/app/src/main/res/layout/layout_profile.xml" value="0.17395833333333333" />
+        <entry key="..\:/Users/AlanStar/Desktop/IMTencentUI_Project/IMTencentUI/app/src/main/res/layout/layout_profile_custom.xml" value="0.17395833333333333" />
+        <entry key="..\:/Users/AlanStar/Desktop/IMTencentUI_Project/IMTencentUI/app/src/main/res/layout/layout_theme_select_item.xml" value="0.18333333333333332" />
+        <entry key="..\:/Users/AlanStar/Desktop/IMTencentUI_Project/IMTencentUI/app/src/main/res/layout/pop_menu_layout.xml" value="0.17395833333333333" />
+      </map>
+    </option>
+  </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="Android Studio default JDK" project-jdk-type="JavaSDK">
+    <output url="file://$PROJECT_DIR$/build/classes" />
+  </component>
+  <component name="ProjectType">
+    <option name="id" value="Android" />
+  </component>
+</project>
